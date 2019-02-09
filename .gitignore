@@ -455,3 +455,5 @@ paket-files/
 # Cake - Uncomment if you are using it
 # tools/**
 # !tools/packages.config
+
+version.py

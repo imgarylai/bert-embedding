@@ -139,7 +139,7 @@ def setup_package():
             'pytest',
         ],
         classifiers=[_f for _f in CLASSIFIERS.split('\n') if _f],
-        scripts=['bin/bert_embedding'],
+        scripts=['bin/bertemb'],
     )
     metadata['version'] = get_version_info(filename=VERSION_PY)[0]
 

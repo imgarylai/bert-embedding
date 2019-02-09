@@ -7,7 +7,7 @@
 ## Install
 
 ```
-pip install bert_embedding
+pip install bert-embedding
 ```
 If you want to run on GPU machine, please install `mxnet-cu92`.
 

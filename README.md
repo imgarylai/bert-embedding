@@ -1,5 +1,7 @@
 # Bert Embeddings
 
+[![Build Status](https://travis-ci.org/imgarylai/bert_embedding.svg?branch=master)](https://travis-ci.org/imgarylai/bert_embedding)
+
 ## Install
 
 ```

@@ -13,7 +13,7 @@ __author__ = "Gary Lai"
 MAJOR = 0
 MINOR = 1
 MICRO = 0
-ISRELEASED = False
+ISRELEASED = True
 VERSION = '%d.%d.%d' % (MAJOR, MINOR, MICRO)
 
 # Return the git revision as a string
@@ -125,6 +125,9 @@ def setup_package():
         author='Gary Lai',
         author_email='gary@gary-lai.com',
         description='BERT token level embedding with MxNet',
+        long_description=open('README.md', 'r').read(),
+        long_description_content_type='text/markdown',
+        keywords='bert nlp mxnet gluonnlp machine deep learning sentence encoding embedding',
         license='ALv2',
         packages=find_packages(exclude=EXCLUDE_FROM_PACKAGES),
         package_data={'': ['*.txt', '*.json']},
@@ -133,7 +136,7 @@ def setup_package():
             'gluonnlp==0.5.0',
         ],
         extras_require={
-          'cu92': ['mxnet-cu92==1.3.0']
+          'gpu': ['mxnet-cu92==1.3.0']
         },
         tests_require=[
             'pytest',

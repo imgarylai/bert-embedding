@@ -1,8 +1,6 @@
 # Bert Embeddings
 
-[![Build Status](https://travis-ci.org/imgarylai/bert_embedding.svg?branch=master)](https://travis-ci.org/imgarylai/bert_embedding)
-
-![](https://img.shields.io/pypi/v/bert-embedding.svg?style=flat)
+[![Build Status](https://travis-ci.org/imgarylai/bert_embedding.svg?branch=master)](https://travis-ci.org/imgarylai/bert_embedding) [![PyPI version](https://badge.fury.io/py/bert-embedding.svg)](https://badge.fury.io/py/bert-embedding)
 
 ## Install
 

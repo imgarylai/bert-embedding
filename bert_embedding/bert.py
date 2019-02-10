@@ -36,15 +36,13 @@ class BertEmbedding:
 
     def embedding(self, sentences: List[str], oov='sum'):
         """
+        Get sentence embedding, tokens, tokens embedding
 
         :param sentences: sentences for encoding
         :type List[str]
         :param oov: use **sum** or **last** to get token embedding for those out of vocabulary words
         :type str
-        :return:
-            - sentence embedding
-            - tokens
-            - tokens embedding
+        :return: (sentence embedding, tokens, tokens embedding)
         """
         iter = self.data_loader(sentences=sentences, batch_size=self.batch_size)
         batches = []

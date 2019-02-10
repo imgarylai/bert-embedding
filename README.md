@@ -34,6 +34,32 @@ bert = BertEmbedding()
 result = bert.embedding(sentences)
 ```
 
+This result contains following three parts in a tuple
+- sentence embedding
+- tokens
+- tokens embedding
+
+Below is the result from the demo code above:
+
+```python
+result[0][0]
+# array([-0.835946  , -0.4605566 , -0.95620036, ..., -0.95608854,
+#       -0.6258104 ,  0.7697007 ], dtype=float32)
+result[0][0].shape
+# (768,)
+result[0][1]
+# ['we', 'introduce', 'a', 'new', 'language', 'representation', 'model', 'called', 'bert', ',', 'which', 'stands', 'for', 'bidirectional', 'encoder', 'representations', 'from', 'transformers']
+len(result[0][1])
+# 18
+len(result[0][2])
+# 18
+result[0][2][0]
+# array([ 0.4805648 ,  0.18369392, -0.28554988, ..., -0.01961522,
+#        1.0207764 , -0.67167974], dtype=float32)
+result[0][2][0].shape
+# (768,)
+```
+
 ## Available pre-trained BERT models
 
 | |book_corpus_wiki_en_uncased|book_corpus_wiki_en_cased|wiki_multilingual

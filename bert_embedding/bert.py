@@ -34,15 +34,15 @@ class BertEmbedding:
                                                          pretrained=True, ctx=self.ctx, use_pooler=True,
                                                          use_decoder=False, use_classifier=False)
 
-    def embedding(self, sentences: List[str], oov='sum'):
+    def embedding(self, sentences, oov='sum'):
         """
         Get sentence embedding, tokens, tokens embedding
 
         :param sentences: sentences for encoding
-        :type List[str]
+        :type sentences: List[str]
         :param oov: use **sum** or **last** to get token embedding for those out of vocabulary words
-        :type str
-        :return: (sentence embedding, tokens, tokens embedding)
+        :type oov: str
+        :return: List[(sentence embedding, tokens, tokens embedding)]
         """
         iter = self.data_loader(sentences=sentences, batch_size=self.batch_size)
         batches = []
@@ -52,8 +52,6 @@ class BertEmbedding:
             token_types = token_types.as_in_context(self.ctx)
             sequence_outputs, pooled_outputs = self.bert(token_ids, token_types, valid_length.astype('float32'))
             [batches.append((token_id, sequence_output, pooled_output)) for token_id, sequence_output, pooled_output in zip(token_ids.asnumpy(), sequence_outputs.asnumpy(), pooled_outputs.asnumpy())]
-            # batches.append((token_ids, sequence_outputs))
-        # return batches
         if oov == 'sum':
             return self.oov_sum(batches)
         else:
@@ -66,6 +64,7 @@ class BertEmbedding:
         return DataLoader(dataset=dataset, batch_size=batch_size, shuffle=shuffle)
 
     def oov_sum(self, batches):
+        # TODO
         # batch:
         #   token_ids (max_seq_length, ),
         #   sequence_outputs (max_seq_length, dim, )
@@ -91,6 +90,7 @@ class BertEmbedding:
         return sentences
 
     def oov_last(self, batches):
+        # TODO
         sentences = []
         for token_ids, sequence_outputs, pooled_output in batches:
             tokens = []

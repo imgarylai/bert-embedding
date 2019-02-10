@@ -20,6 +20,12 @@ This project is implemented with `@MXNet <https://github.com/apache/incubator-mx
 
 .. toctree::
    :maxdepth: 2
+   :caption: BERT models
+
+   bert_models/bert_models
+
+.. toctree::
+   :maxdepth: 2
    :caption: Contents:
 
 

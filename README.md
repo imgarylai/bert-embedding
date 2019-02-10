@@ -1,6 +1,7 @@
 # Bert Embeddings
 
-[![Build Status](https://travis-ci.org/imgarylai/bert_embedding.svg?branch=master)](https://travis-ci.org/imgarylai/bert_embedding) [![PyPI version](https://badge.fury.io/py/bert-embedding.svg)](https://badge.fury.io/py/bert-embedding)
+[![Build Status](https://travis-ci.org/imgarylai/bert_embedding.svg?branch=master)](https://travis-ci.org/imgarylai/bert_embedding) [![PyPI version](https://badge.fury.io/py/bert-embedding.svg)](https://badge.fury.io/py/bert-embedding) [![Documentation Status](https://readthedocs.org/projects/bert-embedding/badge/?version=latest)](https://bert-embedding.readthedocs.io/en/latest/?badge=latest)
+
 
 [BERT](https://arxiv.org/abs/1810.04805), published by [Google](https://github.com/google-research/bert), is new way to obtain pre-trained language model word representation. Many NLP tasks are benefit from BERT to get the SOTA.
 
@@ -34,29 +35,32 @@ bert = BertEmbedding()
 result = bert.embedding(sentences)
 ```
 
-This result contains following three parts in a tuple
-- sentence embedding
-- tokens
-- tokens embedding
+This result is a list of a tuple containing (sentence embedding, tokens, tokens embedding)
 
-Below is the result from the demo code above:
+For example:
 
 ```python
-result[0][0]
+first_sentence = result[0]
+
+first_sentence[0]
 # array([-0.835946  , -0.4605566 , -0.95620036, ..., -0.95608854,
 #       -0.6258104 ,  0.7697007 ], dtype=float32)
-result[0][0].shape
+first_sentence[0].shape
 # (768,)
-result[0][1]
+
+first_sentence[1]
 # ['we', 'introduce', 'a', 'new', 'language', 'representation', 'model', 'called', 'bert', ',', 'which', 'stands', 'for', 'bidirectional', 'encoder', 'representations', 'from', 'transformers']
-len(result[0][1])
+len(first_sentence[1])
 # 18
-len(result[0][2])
+
+
+len(first_sentence[2])
 # 18
-result[0][2][0]
+first_token_in_first_sentence = first_sentence[0]
+first_token_in_first_sentence[0]
 # array([ 0.4805648 ,  0.18369392, -0.28554988, ..., -0.01961522,
 #        1.0207764 , -0.67167974], dtype=float32)
-result[0][2][0].shape
+first_token_in_first_sentence[0].shape
 # (768,)
 ```
 

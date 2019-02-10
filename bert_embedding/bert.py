@@ -2,10 +2,9 @@ from typing import List
 
 import gluonnlp
 import mxnet as mx
-# from gluonnlp.data import BERTSentenceTransform, BERTTokenizer
+from gluonnlp.data import BERTTokenizer, BERTSentenceTransform
 from mxnet.gluon.data import DataLoader
 
-from bert_embedding.bert_transform import BERTTokenizer, BERTSentenceTransform
 from bert_embedding.dataset import BertEmbeddingDataset
 
 __author__ = "Gary Lai"

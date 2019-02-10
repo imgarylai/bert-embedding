@@ -13,6 +13,20 @@ __author__ = "Gary Lai"
 class BertEmbedding:
 
     def __init__(self, ctx=0, model='bert_12_768_12', dataset_name='book_corpus_wiki_en_uncased', max_seq_length=25, batch_size=256):
+        """
+        Encoding from BERT model.
+
+        :param ctx: running BertEmbedding on which gpu device id.
+        :type ctx: int
+        :param model: pre-trained model
+        :type model: str
+        :param dataset_name: pre-trained model dataset
+        :type dataset_name: str
+        :param max_seq_length: max length of each sequence
+        :type  max_seq_length: int
+        :param batch_size: batch size
+        :type batch_size: int
+        """
         self.ctx = mx.gpu(ctx)
         self.max_seq_length = max_seq_length
         self.batch_size = batch_size
@@ -21,6 +35,17 @@ class BertEmbedding:
                                                          use_decoder=False, use_classifier=False)
 
     def embedding(self, sentences: List[str], oov='sum'):
+        """
+
+        :param sentences: sentences for encoding
+        :type List[str]
+        :param oov: use **sum** or **last** to get token embedding for those out of vocabulary words
+        :type str
+        :return:
+            - sentence embedding
+            - tokens
+            - tokens embedding
+        """
         iter = self.data_loader(sentences=sentences, batch_size=self.batch_size)
         batches = []
         for batch_id, (token_ids, valid_length, token_types) in enumerate(iter):

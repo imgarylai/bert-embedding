@@ -12,8 +12,8 @@ __author__ = "Gary Lai"
 
 MAJOR = 0
 MINOR = 1
-MICRO = 0
-ISRELEASED = True
+MICRO = 1
+ISRELEASED = False
 VERSION = '%d.%d.%d' % (MAJOR, MINOR, MICRO)
 
 # Return the git revision as a string
@@ -136,7 +136,7 @@ def setup_package():
             'gluonnlp==0.5.0',
         ],
         extras_require={
-          'gpu': ['mxnet-cu92==1.3.0']
+            'gpu': ['mxnet-cu92==1.3.0'],
         },
         tests_require=[
             'pytest',

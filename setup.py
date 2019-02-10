@@ -133,7 +133,7 @@ def setup_package():
         package_data={'': ['*.txt', '*.json']},
         install_requires=[
             'mxnet==1.3.0',
-            'gluonnlp==0.5.0',
+            # 'gluonnlp==0.5.1',
         ],
         extras_require={
             'gpu': ['mxnet-cu92==1.3.0'],

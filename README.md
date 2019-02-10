@@ -18,7 +18,7 @@ pip install https://github.com/dmlc/gluon-nlp/tarball/master
 pip install mxnet-cu92
 ```
 
-> This project use API from gluonnlp==0.5.1, which hasn't been released yet. Once 0.5.1 is release, it is not necessary to install gluonnlp from source. 
+> This project use API from gluonnlp==0.5.1, which hasn't been released yet. Once 0.5.1 is released, it is not necessary to install gluonnlp from source. 
 
 ## Usage
 

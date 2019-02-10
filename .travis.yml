@@ -4,7 +4,8 @@ python:
 - '3.5'
 - '3.6'
 install:
-- pip install .
+  - pip install .
+  - pip install https://github.com/dmlc/gluon-nlp/tarball/master
 deploy:
   provider: pypi
   distributions: sdist bdist_wheel

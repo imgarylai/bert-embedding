@@ -1,6 +1,6 @@
 # Bert Embeddings
 
-[![Build Status](https://travis-ci.org/imgarylai/bert_embedding.svg?branch=master)](https://travis-ci.org/imgarylai/bert_embedding) [![PyPI version](https://badge.fury.io/py/bert-embedding.svg)](https://badge.fury.io/py/bert-embedding) [![Documentation Status](https://readthedocs.org/projects/bert-embedding/badge/?version=latest)](https://bert-embedding.readthedocs.io/en/latest/?badge=latest)
+[![Build Status](https://travis-ci.org/imgarylai/bert-embedding.svg?branch=master)](https://travis-ci.org/imgarylai/bert-embedding) [![PyPI version](https://badge.fury.io/py/bert-embedding.svg)](https://pypi.org/project/bert-embedding/) [![Documentation Status](https://readthedocs.org/projects/bert-embedding/badge/?version=latest)](https://bert-embedding.readthedocs.io/en/latest/?badge=latest)
 
 
 [BERT](https://arxiv.org/abs/1810.04805), published by [Google](https://github.com/google-research/bert), is new way to obtain pre-trained language model word representation. Many NLP tasks are benefit from BERT to get the SOTA.

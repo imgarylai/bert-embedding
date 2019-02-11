@@ -12,8 +12,8 @@ __author__ = "Gary Lai"
 
 MAJOR = 0
 MINOR = 1
-MICRO = 1
-ISRELEASED = True
+MICRO = 2
+ISRELEASED = False
 VERSION = '%d.%d.%d' % (MAJOR, MINOR, MICRO)
 
 # Return the git revision as a string

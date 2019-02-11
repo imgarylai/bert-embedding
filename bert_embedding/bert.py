@@ -12,12 +12,12 @@ __author__ = "Gary Lai"
 
 class BertEmbedding:
 
-    def __init__(self, ctx=0, model='bert_12_768_12', dataset_name='book_corpus_wiki_en_uncased', max_seq_length=25, batch_size=256):
+    def __init__(self, ctx=None, model='bert_12_768_12', dataset_name='book_corpus_wiki_en_uncased', max_seq_length=25, batch_size=256):
         """
         Encoding from BERT model.
 
         :param ctx: running BertEmbedding on which gpu device id.
-        :type ctx: int
+        :type ctx: Context
         :param model: pre-trained model
         :type model: str
         :param dataset_name: pre-trained model dataset
@@ -27,7 +27,7 @@ class BertEmbedding:
         :param batch_size: batch size
         :type batch_size: int
         """
-        self.ctx = mx.gpu(ctx)
+        self.ctx = mx.cpu() if ctx is None else ctx
         self.max_seq_length = max_seq_length
         self.batch_size = batch_size
         self.bert, self.vocab = gluonnlp.model.get_model(model, dataset_name=dataset_name,

@@ -34,6 +34,17 @@ sentences = bert_abstract.split('\n')
 bert = BertEmbedding()
 result = bert.embedding(sentences)
 ```
+If you want to use GPU, please import mxnet and set context
+
+```python
+import mxnet as mx
+from bert_embedding import BertEmbedding
+
+...
+
+ctx = mx.gpu(0)
+bert = BertEmbedding()
+```
 
 This result is a list of a tuple containing (sentence embedding, tokens, tokens embedding)
 

@@ -43,7 +43,7 @@ from bert_embedding import BertEmbedding
 ...
 
 ctx = mx.gpu(0)
-bert = BertEmbedding()
+bert = BertEmbedding(ctx=ctx)
 ```
 
 This result is a list of a tuple containing (sentence embedding, tokens, tokens embedding)

@@ -67,7 +67,7 @@ len(first_sentence[1])
 
 len(first_sentence[2])
 # 18
-first_token_in_first_sentence = first_sentence[0]
+first_token_in_first_sentence = first_sentence[2]
 first_token_in_first_sentence[0]
 # array([ 0.4805648 ,  0.18369392, -0.28554988, ..., -0.01961522,
 #        1.0207764 , -0.67167974], dtype=float32)

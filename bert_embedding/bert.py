@@ -34,13 +34,13 @@ class BertEmbedding:
                                                          pretrained=True, ctx=self.ctx, use_pooler=True,
                                                          use_decoder=False, use_classifier=False)
 
-    def embedding(self, sentences, oov='sum'):
+    def embedding(self, sentences, oov='avg'):
         """
         Get sentence embedding, tokens, tokens embedding
 
         :param sentences: sentences for encoding
         :type sentences: List[str]
-        :param oov: use **sum** or **last** to get token embedding for those out of vocabulary words
+        :param oov: use **avg** or **sum** or **last** to get token embedding for those out of vocabulary words
         :type oov: str
         :return: List[(sentence embedding, tokens, tokens embedding)]
         """
@@ -54,6 +54,8 @@ class BertEmbedding:
             [batches.append((token_id, sequence_output, pooled_output)) for token_id, sequence_output, pooled_output in zip(token_ids.asnumpy(), sequence_outputs.asnumpy(), pooled_outputs.asnumpy())]
         if oov == 'sum':
             return self.oov_sum(batches)
+        elif oov == 'avg':
+            return self.oov_avg(batches)
         else:
             return self.oov_last(batches)
 
@@ -86,6 +88,34 @@ class BertEmbedding:
                 else:
                     tokens.append(token)
                     tensors.append(sequence_output)
+            sentences.append((pooled_output, tokens, tensors))
+        return sentences
+
+    def oov_avg(self, batches):
+        sentences = []
+        for token_ids, sequence_outputs, pooled_output in batches:
+            tokens = []
+            tensors = []
+            oov_len = 1
+            for token_id, sequence_output in zip(token_ids, sequence_outputs):
+                if token_id == 1:
+                    break
+                if token_id == 2 or token_id == 3:
+                    continue
+                token = self.vocab.idx_to_token[token_id]
+                if token.startswith('##'):
+                    token = token[2:]
+                    tokens[-1] += token
+                    tensors[-1] += sequence_output
+                    oov_len += 1
+                else:  # iv, avg last oov
+                    if oov_len > 1:
+                        tensors[-1] /= oov_len
+                        oov_len = 1
+                    tokens.append(token)
+                    tensors.append(sequence_output)
+            if oov_len > 1:  # if the whole sentence is one oov, handle this special case
+                tensors[-1] /= oov_len
             sentences.append((pooled_output, tokens, tensors))
         return sentences
 

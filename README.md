@@ -75,6 +75,17 @@ first_token_in_first_sentence[0].shape
 # (768,)
 ```
 
+## OOV
+
+There are three ways to handle oov, avg (default), sum, and last. This can be specified in encoding. 
+
+```python
+...
+bert = BertEmbedding()
+bert.embedding(sentences, 'sum')
+...
+```
+
 ## Available pre-trained BERT models
 
 | |book_corpus_wiki_en_uncased|book_corpus_wiki_en_cased|wiki_multilingual

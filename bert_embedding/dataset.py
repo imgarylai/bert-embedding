@@ -1,11 +1,23 @@
+# coding=utf-8
+"""BERT embedding dataset."""
+
 from typing import List
 
 from mxnet.gluon.data import Dataset
 
-__author__ = "Gary Lai"
+__author__ = 'Gary Lai'
 
 
 class BertEmbeddingDataset(Dataset):
+    """Dataset for BERT Embedding
+
+    Parameters
+    ----------
+    sentences : List[str].
+        Sentences for embeddings.
+    transform : BERTDatasetTransform, default None.
+        transformer for BERT input format
+    """
 
     def __init__(self, sentences: List[str], transform=None):
         self.sentences = sentences

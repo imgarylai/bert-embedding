@@ -34,7 +34,7 @@ class BertEmbedding:
                                                          pretrained=True, ctx=self.ctx, use_pooler=True,
                                                          use_decoder=False, use_classifier=False)
 
-    def embedding(self, sentences, oov='avg'):
+    def embedding(self, sentences: List[str], oov_way='avg'):
         """
         Get sentence embedding, tokens, tokens embedding
 
@@ -58,6 +58,7 @@ class BertEmbedding:
             return self.oov_avg(batches)
         else:
             return self.oov_last(batches)
+        return self.oov(batches, oov_way)
 
     def data_loader(self, sentences, batch_size, shuffle=False):
         tokenizer = BERTTokenizer(self.vocab)
@@ -65,33 +66,27 @@ class BertEmbedding:
         dataset = BertEmbeddingDataset(sentences, transform)
         return DataLoader(dataset=dataset, batch_size=batch_size, shuffle=shuffle)
 
-    def oov_sum(self, batches):
-        # TODO
-        # batch:
-        #   token_ids (max_seq_length, ),
-        #   sequence_outputs (max_seq_length, dim, )
-        #   pooled_output (dim, )
-        sentences = []
-        for token_ids, sequence_outputs, pooled_output in batches:
-            tokens = []
-            tensors = []
-            for token_id, sequence_output in zip(token_ids, sequence_outputs):
-                if token_id == 1:
-                    break
-                if token_id == 2 or token_id == 3:
-                    continue
-                token = self.vocab.idx_to_token[token_id]
-                if token.startswith('##'):
-                    token = token[2:]
-                    tokens[-1] += token
-                    tensors[-1] += sequence_output
-                else:
-                    tokens.append(token)
-                    tensors.append(sequence_output)
-            sentences.append((pooled_output, tokens, tensors))
-        return sentences
+    def oov(self, batches, oov_way='avg'):
+        """
+        How to handle oov
 
-    def oov_avg(self, batches):
+        Parameters
+        ----------
+        batches : List[(tokens_id,
+                        sequence_outputs,
+                        pooled_output].
+            batch   token_ids (max_seq_length, ),
+                    sequence_outputs (max_seq_length, dim, ),
+                    pooled_output (dim, )
+        oov_way : str
+            use **avg**, **sum** or **last** to get token embedding for those out of
+            vocabulary words
+
+        Returns
+        -------
+        List[(ndarray, List[str], List[ndarray])]
+            List of sentence embedding, tokens, and tokens embedding
+        """
         sentences = []
         for token_ids, sequence_outputs, pooled_output in batches:
             tokens = []
@@ -100,14 +95,18 @@ class BertEmbedding:
             for token_id, sequence_output in zip(token_ids, sequence_outputs):
                 if token_id == 1:
                     break
-                if token_id == 2 or token_id == 3:
+                if token_id in (2, 3):
                     continue
                 token = self.vocab.idx_to_token[token_id]
                 if token.startswith('##'):
                     token = token[2:]
                     tokens[-1] += token
-                    tensors[-1] += sequence_output
-                    oov_len += 1
+                    if oov_way == 'last':
+                        tensors[-1] = sequence_output
+                    else:
+                        tensors[-1] += sequence_output
+                    if oov_way == 'avg':
+                        oov_len += 1
                 else:  # iv, avg last oov
                     if oov_len > 1:
                         tensors[-1] /= oov_len
@@ -116,27 +115,5 @@ class BertEmbedding:
                     tensors.append(sequence_output)
             if oov_len > 1:  # if the whole sentence is one oov, handle this special case
                 tensors[-1] /= oov_len
-            sentences.append((pooled_output, tokens, tensors))
-        return sentences
-
-    def oov_last(self, batches):
-        # TODO
-        sentences = []
-        for token_ids, sequence_outputs, pooled_output in batches:
-            tokens = []
-            tensors = []
-            for token_id, sequence_output in zip(token_ids, sequence_outputs):
-                if token_id == 1:
-                    break
-                if token_id == 2 or token_id == 3:
-                    continue
-                token = self.vocab.idx_to_token[token_id]
-                if token.startswith('##'):
-                    token = token[2:]
-                    tokens[-1] += token
-                    tensors[-1] = sequence_output
-                else:
-                    tokens.append(token)
-                    tensors.append(sequence_output)
             sentences.append((pooled_output, tokens, tensors))
         return sentences

@@ -456,3 +456,4 @@ paket-files/
 # !tools/packages.config
 
 version.py
+!bin/bert

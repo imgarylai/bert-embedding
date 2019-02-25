@@ -88,10 +88,10 @@ bert.embedding(sentences, 'sum')
 
 ## Available pre-trained BERT models
 
-| |book_corpus_wiki_en_uncased|book_corpus_wiki_en_cased|wiki_multilingual
-|---|---|---|---|
-|bert_12_768_12|✓|✓|✓|
-|bert_24_1024_16|x|✓|x|
+| |book_corpus_wiki_en_uncased|book_corpus_wiki_en_cased|wiki_multilingual|wiki_multilingual_cased|wiki_cn|
+|---|---|---|---|---|---|
+|bert_12_768_12|✓|✓|✓|✓|✓|
+|bert_24_1024_16|x|✓|x|x|x|
 
 Example of using the large pre-trained BERT model from Google 
 

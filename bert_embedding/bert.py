@@ -55,7 +55,7 @@ class BertEmbedding(object):
         self.bert, self.vocab = gluonnlp.model.get_model(model,
                                                          dataset_name=dataset_name,
                                                          pretrained=True, ctx=self.ctx,
-                                                         use_pooler=True,
+                                                         use_pooler=False,
                                                          use_decoder=False,
                                                          use_classifier=False)
 
@@ -73,8 +73,8 @@ class BertEmbedding(object):
 
         Returns
         -------
-        List[(ndarray, List[str], List[ndarray])]
-            List of sentence embedding, tokens, and tokens embedding
+        List[(List[str], List[ndarray])]
+            List of tokens, and tokens embedding
         """
         data_iter = self.data_loader(sentences=sentences)
         batches = []
@@ -82,13 +82,11 @@ class BertEmbedding(object):
             token_ids = token_ids.as_in_context(self.ctx)
             valid_length = valid_length.as_in_context(self.ctx)
             token_types = token_types.as_in_context(self.ctx)
-            sequence_outputs, pooled_outputs = self.bert(token_ids,
-                                                         token_types,
-                                                         valid_length.astype('float32'))
-            for token_id, sequence_output, pooled_output in zip(token_ids.asnumpy(),
-                                                                sequence_outputs.asnumpy(),
-                                                                pooled_outputs.asnumpy()):
-                batches.append((token_id, sequence_output, pooled_output))
+            sequence_outputs = self.bert(token_ids, token_types,
+                                         valid_length.astype('float32'))
+            for token_id, sequence_output in zip(token_ids.asnumpy(),
+                                                                sequence_outputs.asnumpy()):
+                batches.append((token_id, sequence_output))
         return self.oov(batches, oov_way)
 
     def data_loader(self, sentences, shuffle=False):
@@ -121,7 +119,7 @@ class BertEmbedding(object):
             List of sentence embedding, tokens, and tokens embedding
         """
         sentences = []
-        for token_ids, sequence_outputs, pooled_output in batches:
+        for token_ids, sequence_outputs in batches:
             tokens = []
             tensors = []
             oov_len = 1
@@ -148,5 +146,5 @@ class BertEmbedding(object):
                     tensors.append(sequence_output)
             if oov_len > 1:  # if the whole sentence is one oov, handle this special case
                 tensors[-1] /= oov_len
-            sentences.append((pooled_output, tokens, tensors))
+            sentences.append((tokens, tensors))
         return sentences

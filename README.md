@@ -5,7 +5,7 @@
 
 [BERT](https://arxiv.org/abs/1810.04805), published by [Google](https://github.com/google-research/bert), is new way to obtain pre-trained language model word representation. Many NLP tasks are benefit from BERT to get the SOTA.
 
-The goal of this project is to obtain the sentence and token embedding from BERT's pre-trained model. In this way, instead of building and do fine-tuning for an end-to-end NLP model, you can build your model by just utilizing the sentence or token embedding.
+The goal of this project is to obtain the token embedding from BERT's pre-trained model. In this way, instead of building and do fine-tuning for an end-to-end NLP model, you can build your model by just utilizing or token embedding.
 
 This project is implemented with [@MXNet](https://github.com/apache/incubator-mxnet). Special thanks to [@gluon-nlp](https://github.com/dmlc/gluon-nlp) team.
 
@@ -46,7 +46,7 @@ ctx = mx.gpu(0)
 bert = BertEmbedding(ctx=ctx)
 ```
 
-This result is a list of a tuple containing (sentence embedding, tokens, tokens embedding)
+This result is a list of a tuple containing (tokens, tokens embedding)
 
 For example:
 
@@ -54,24 +54,18 @@ For example:
 first_sentence = result[0]
 
 first_sentence[0]
-# array([-0.835946  , -0.4605566 , -0.95620036, ..., -0.95608854,
-#       -0.6258104 ,  0.7697007 ], dtype=float32)
-first_sentence[0].shape
-# (768,)
-
-first_sentence[1]
 # ['we', 'introduce', 'a', 'new', 'language', 'representation', 'model', 'called', 'bert', ',', 'which', 'stands', 'for', 'bidirectional', 'encoder', 'representations', 'from', 'transformers']
+len(first_sentence[0])
+# 18
+
+
 len(first_sentence[1])
 # 18
-
-
-len(first_sentence[2])
-# 18
-first_token_in_first_sentence = first_sentence[2]
-first_token_in_first_sentence[0]
+first_token_in_first_sentence = first_sentence[1]
+first_token_in_first_sentence[1]
 # array([ 0.4805648 ,  0.18369392, -0.28554988, ..., -0.01961522,
 #        1.0207764 , -0.67167974], dtype=float32)
-first_token_in_first_sentence[0].shape
+first_token_in_first_sentence[1].shape
 # (768,)
 ```
 

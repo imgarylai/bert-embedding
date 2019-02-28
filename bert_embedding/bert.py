@@ -61,7 +61,7 @@ class BertEmbedding(object):
 
     def embedding(self, sentences, oov_way='avg'):
         """
-        Get sentence embedding, tokens, tokens embedding
+        Get tokens, tokens embedding
 
         Parameters
         ----------
@@ -115,8 +115,8 @@ class BertEmbedding(object):
 
         Returns
         -------
-        List[(ndarray, List[str], List[ndarray])]
-            List of sentence embedding, tokens, and tokens embedding
+        List[(List[str], List[ndarray])]
+            List of tokens, and tokens embedding
         """
         sentences = []
         for token_ids, sequence_outputs in batches:

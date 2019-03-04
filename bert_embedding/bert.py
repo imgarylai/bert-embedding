@@ -60,6 +60,9 @@ class BertEmbedding(object):
                                                          use_classifier=False)
 
     def __call__(self, sentences, oov_way='avg'):
+        return self.embedding(sentences, oov_way='avg')
+
+    def embedding(self, sentences, oov_way='avg'):
         """
         Get tokens, tokens embedding
 
@@ -85,7 +88,7 @@ class BertEmbedding(object):
             sequence_outputs = self.bert(token_ids, token_types,
                                          valid_length.astype('float32'))
             for token_id, sequence_output in zip(token_ids.asnumpy(),
-                                                                sequence_outputs.asnumpy()):
+                                                 sequence_outputs.asnumpy()):
                 batches.append((token_id, sequence_output))
         return self.oov(batches, oov_way)
 

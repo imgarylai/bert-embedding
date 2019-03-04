@@ -31,8 +31,8 @@ bert_abstract = """We introduce a new language representation model called BERT,
 BERT is conceptually simple and empirically powerful. 
 It obtains new state-of-the-art results on eleven natural language processing tasks, including pushing the GLUE benchmark to 80.4% (7.6% absolute improvement), MultiNLI accuracy to 86.7 (5.6% absolute improvement) and the SQuAD v1.1 question answering Test F1 to 93.2 (1.5% absolute improvement), outperforming human performance by 2.0%."""
 sentences = bert_abstract.split('\n')
-bert = BertEmbedding()
-result = bert.embedding(sentences)
+bert_embedding = BertEmbedding()
+result = bert_embedding(sentences)
 ```
 If you want to use GPU, please import mxnet and set context
 
@@ -75,8 +75,8 @@ There are three ways to handle oov, avg (default), sum, and last. This can be sp
 
 ```python
 ...
-bert = BertEmbedding()
-bert.embedding(sentences, 'sum')
+bert_embedding = BertEmbedding()
+bert_embedding(sentences, 'sum')
 ...
 ```
 
@@ -90,9 +90,9 @@ bert.embedding(sentences, 'sum')
 Example of using the large pre-trained BERT model from Google 
 
 ```python
-from bert_embedding.bert import BertEmbedding
+from bert_embedding import BertEmbedding
 
-bert = BertEmbedding(model='bert_24_1024_16', dataset_name='book_corpus_wiki_en_cased')
+bert_embedding = BertEmbedding(model='bert_24_1024_16', dataset_name='book_corpus_wiki_en_cased')
 ```
 
 Source: [gluonnlp](http://gluon-nlp.mxnet.io/model_zoo/bert/index.html) 

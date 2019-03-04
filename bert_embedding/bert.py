@@ -59,7 +59,7 @@ class BertEmbedding(object):
                                                          use_decoder=False,
                                                          use_classifier=False)
 
-    def embedding(self, sentences, oov_way='avg'):
+    def __call__(self, sentences, oov_way='avg'):
         """
         Get tokens, tokens embedding
 

@@ -35,18 +35,18 @@ def main():
 
     args = parser.parse_args()
     context = mx.gpu(args.gpu) if args.gpu else mx.cpu()
-    bert = BertEmbedding(ctx=context, model=args.model, dataset_name=args.dataset_name,
+    bert_embedding = BertEmbedding(ctx=context, model=args.model, dataset_name=args.dataset_name,
                          max_seq_length=args.max_seq_length, batch_size=args.batch_size)
     result = []
     sents = []
     if args.sentences:
         sents = args.sentences
-        result = bert.embedding(sents, oov_way=args.oov_way)
+        result = bert_embedding(sents, oov_way=args.oov_way)
     elif args.file:
         with io.open(args.file, 'r', encoding='utf8') as in_file:
             for line in in_file:
                 sents.append(line.strip())
-        result = bert.embedding(sents, oov_way=args.oov_way)
+        result = bert_embedding(sents, oov_way=args.oov_way)
     else:
         print('Please specify --sentence or --file')
 

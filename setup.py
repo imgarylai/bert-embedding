@@ -16,6 +16,7 @@ MICRO = 5
 ISRELEASED = False
 VERSION = '%d.%d.%d' % (MAJOR, MINOR, MICRO)
 
+
 # Return the git revision as a string
 def get_dev_version():
     def _minimal_ext_cmd(cmd):
@@ -53,8 +54,8 @@ def get_version_info(filename):
         try:
             from bert_embedding.version import dev_version as DEV_VERSION
         except ImportError:
-            raise ImportError("Unable to import dev_version. Try removing " 
-                              "bert_embedding/version.py and the build directory " 
+            raise ImportError("Unable to import dev_version. Try removing "
+                              "bert_embedding/version.py and the build directory "
                               "before building.")
     else:
         DEV_VERSION = "Unknown"
@@ -132,7 +133,7 @@ def setup_package():
         packages=find_packages(exclude=EXCLUDE_FROM_PACKAGES),
         package_data={'': ['*.txt', '*.json']},
         install_requires=[
-            'mxnet==1.3.0',
+            'mxnet==1.4.0',
             # 'gluonnlp==0.5.1',
         ],
         extras_require={

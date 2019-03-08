@@ -4,18 +4,19 @@ python:
 - '3.5'
 - '3.6'
 install:
-  - pip install .
-  - pip install https://github.com/dmlc/gluon-nlp/tarball/master
-deploy:
-  provider: pypi
-  distributions: sdist bdist_wheel
-  user: garylai1990
-  on:
-    python: 3.5
-    branch: master
-  password:
-    secure: CX4ik1LGlYvxtYsVLl/6fbCBEaszcuCs2+CVAo2tyCUyV7oMhh6UIBuFxaW891yF/kzVbnfa6+OfjmV2gYwAmehDcraFml/2FKFRyfUBOgJsel766WNl+b4oUZttzJqEZHASNAsA/WPBYqfD+dQQJ4U9FmMZm94jvsfUDD/uVAZeTZPc+EUJjWCgqGD5NHmuZeMtgx+bZUVo+Uuv9o4d1s6A5Mueq4xKU0kLJ8B+InmY1Fgrp0mbBmByss7qdp/jsEwiqDG213QrqRSGrTmKQeLRjxc4kg+4gu17sOTn2HgPdPPD6iTv+ul/8XXXBUfGELGyeCo461itZqrd4Oclrtl7e3doWJaiMBjOi1lcuxa3sTKYg440dQJCrM/ZroX0gQKxbiwZJryVYogm8UiyAfzL/2nsMsMM3PjQjvYaBC2632hR/ljK3Y3mpkBq+L557yrKfAIiA9u/hts8iIT113TfP9JS5rNlEmKun/Zteznzkj3zsDl7kOTrIKP1xqcdKfBaHvq32aiGK2su9S+Bcp9RCHzA2Lj2reCqjhMfrKGP7KeFKdZR753aK+ATigOUYa//yBNcLbT940MAdksgpsnHTR126nMTo2cKnn+nlbbVtBW+iKslDSTMvaEvsDxexte4eEA3z/Rb8iO6vlVwNHmorbKqnBVaPbYRElGu9lE=
+- pip install .
+- pip install https://github.com/dmlc/gluon-nlp/tarball/master
 script:
 - pytest
 notifications:
   email: false
+deploy:
+  provider: pypi
+  distributions: sdist bdist_wheel
+  user: garylai1990
+  password:
+    secure: wKbQkb4dL7Ops1rhUghg5fleFvyUX9XzZFw1VyEO6qaBfHhsfQg7AnyFMTI7tQZKUHsbFeH7HHk9qS42DQhJGcKmhbqa1dO4rd6XsgYVvhvw0mw/0akeiM5Y8RE8m1KuAUXjLgtv1UE4hsPJ5BnbYbZTG3cOYh3E6/BgwqLD2Q5cUjUg0sFhdWUQOncdicUdviUlw6rQ51RKW1lAP5fGFXUwe79A0KebHY7lJqvemkm+0d4n2JxNc6mNj7EpuWExlK5eQcqwd1pvaLuazIOIkL6JZ8nZovROBiSBcgauF/khSKABNb6YYV8jMvMBo61682I+7fO81EzXDnHx1n7/SNj+OUbikiUMr4tbbg4dd1A7o+6ibojknWSaAIAp6kCtjNdEf97i9RAB52oaWJJ9PYVlFR5aU2LYppyqhwrbfq0HAMxnOcPrjOcrSaqck+uop3J5avf8a8LkC3NSKUI51SEGnjrFbra7y0ztxYHyCmnPNqYCdqXOloHl+Rg0JBObnEIWnOEKYFSgah3W4c4UBLurGZyorzW2Kq9+cUGRflEYRzJwLKu8uNCADXcd6OtpGhR9E9/0Jw/HNGMOjOY+ero5MJfYi5vLMQxOlj4MCGc513PAOAsvq9whsT/3maRArICp6ri2sUK4UAZYL1hBfviI7BfdhDymL1VrOo0jo0Y=
+  on:
+    repo: imgarylai/bert-embedding
+    python: 3.5
+    branch: master

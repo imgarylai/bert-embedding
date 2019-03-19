@@ -107,7 +107,6 @@ Programming Language :: Python :: 2.7
 Programming Language :: Python :: 3.4
 Programming Language :: Python :: 3.5
 Programming Language :: Python :: 3.6
-Programming Language :: Python :: 3.7
 Topic :: Scientific/Engineering :: Artificial Intelligence
 Topic :: Scientific/Engineering :: Information Analysis
 Operating System :: POSIX
@@ -135,6 +134,7 @@ def setup_package():
         packages=find_packages(exclude=EXCLUDE_FROM_PACKAGES),
         package_data={'': ['*.txt', '*.json']},
         install_requires=[
+            'typing==3.6.6',
             'mxnet==1.4.0',
             'gluonnlp==0.6.0',
         ],

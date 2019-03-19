@@ -10,10 +10,10 @@ from setuptools import setup, find_packages
 
 __author__ = "Gary Lai"
 
-MAJOR = 0
-MINOR = 1
-MICRO = 5
-ISRELEASED = True
+MAJOR = 1
+MINOR = 0
+MICRO = 0
+ISRELEASED = False
 VERSION = '%d.%d.%d' % (MAJOR, MINOR, MICRO)
 
 
@@ -134,7 +134,7 @@ def setup_package():
         package_data={'': ['*.txt', '*.json']},
         install_requires=[
             'mxnet==1.4.0',
-            # 'gluonnlp==0.5.1',
+            'gluonnlp==0.6.0',
         ],
         extras_require={
             'gpu': ['mxnet-cu92==1.3.0'],

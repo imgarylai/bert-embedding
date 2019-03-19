@@ -13,7 +13,6 @@ This project is implemented with [@MXNet](https://github.com/apache/incubator-mx
 
 ```
 pip install bert-embedding
-pip install https://github.com/dmlc/gluon-nlp/tarball/master
 # If you want to run on GPU machine, please install `mxnet-cu92`.
 pip install mxnet-cu92
 ```

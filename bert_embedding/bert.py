@@ -60,6 +60,22 @@ class BertEmbedding(object):
                                                          use_classifier=False)
 
     def __call__(self, sentences, oov_way='avg'):
+        """
+        Get tokens, tokens embedding
+
+        Parameters
+        ----------
+        sentences : List[str]
+            sentences for encoding.
+        oov_way : str, default avg.
+            use **avg**, **sum** or **last** to get token embedding for those out of
+            vocabulary words
+
+        Returns
+        -------
+        List[(List[str], List[ndarray])]
+            List of tokens, and tokens embedding
+        """
         return self.embedding(sentences, oov_way='avg')
 
     def embedding(self, sentences, oov_way='avg'):

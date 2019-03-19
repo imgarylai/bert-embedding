@@ -91,8 +91,8 @@ if not release:
 
 VERSION_PY = 'bert_embedding/version.py'
 
-# if sys.version_info[:2] < (3, 5):
-#     raise RuntimeError("Python version >= 3.5 required.")
+if sys.version_info[:2] < (3, 4):
+    raise RuntimeError("Python version >= 3.4 required.")
 
 # How mature is this project? Common values are
 #   3 - Alpha
@@ -103,7 +103,7 @@ Development Status :: 3 - Alpha
 Intended Audience :: Science/Research
 Intended Audience :: Developers
 License :: OSI Approved :: Apache Software License
-Programming Language :: Python :: 2.7
+Programming Language :: Python :: 3 :: Only
 Programming Language :: Python :: 3.4
 Programming Language :: Python :: 3.5
 Programming Language :: Python :: 3.6

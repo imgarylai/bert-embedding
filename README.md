@@ -17,8 +17,6 @@ pip install bert-embedding
 pip install mxnet-cu92
 ```
 
-> This project use API from gluonnlp==0.5.1, which hasn't been released yet. Once 0.5.1 is released, it is not necessary to install gluonnlp from source. 
-
 ## Usage
 
 ```python

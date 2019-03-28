@@ -1,15 +1,18 @@
 language: python
 cache: pip
 python:
-- '3.4'
-- '3.5'
-- '3.6'
+  - '3.4'
+  - '3.5'
+  - '3.6'
 install:
-- pip install .
+  - pip install .
+  - pip install codecov
 script:
-- pytest
+  - pytest --cov=./q
 notifications:
   email: false
+after_success:
+  - codecov
 deploy:
   provider: pypi
   distributions: sdist bdist_wheel

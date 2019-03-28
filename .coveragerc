@@ -1,0 +1,3 @@
+[run]
+source = bert_embedding
+omit = bert_embedding/tests/*

@@ -83,7 +83,7 @@ class BertEmbedding(object):
             logger.info('Loading params from %s', params_path)
             self.bert.load_parameters(params_path, ctx=ctx, ignore_extra=True)
 
-            lower = 'uncased' in self.dataset_name
+        lower = 'uncased' in self.dataset_name
 
         self.tokenizer = BERTTokenizer(self.vocab, lower=lower)
         self.transform = BERTSentenceTransform(tokenizer=self.tokenizer,

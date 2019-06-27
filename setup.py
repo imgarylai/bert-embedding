@@ -134,10 +134,10 @@ def setup_package():
         packages=find_packages(exclude=EXCLUDE_FROM_PACKAGES),
         package_data={'': ['*.txt', '*.json']},
         install_requires=[
-            'typing==3.6.6',
-            'numpy==1.14.6',
-            'mxnet==1.4.0',
-            'gluonnlp==0.6.0',
+            'typing>=3.6.6',
+            'numpy>=1.14.6',
+            'mxnet>=1.4.0',
+            'gluonnlp>=0.6.0',
         ],
         extras_require={
             'gpu': ['mxnet-cu92==1.3.0'],

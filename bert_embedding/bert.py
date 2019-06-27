@@ -107,7 +107,7 @@ class BertEmbedding(object):
         List[(List[str], List[ndarray])]
             List of tokens, and tokens embedding
         """
-        return self.embedding(sentences, oov_way='avg')
+        return self.embedding(sentences, oov_way)
 
     def embedding(self, sentences, oov_way='avg'):
         """

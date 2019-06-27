@@ -90,7 +90,7 @@ class BertEmbedding(object):
                                                max_seq_length=self.max_seq_length,
                                                pair=False)
 
-    def __call__(self, sentences, oov_way='avg'):
+    def __call__(self, sentences, oov_way='avg', filter_spec_tokens=True):
         """
         Get tokens, tokens embedding
 
@@ -107,9 +107,9 @@ class BertEmbedding(object):
         List[(List[str], List[ndarray])]
             List of tokens, and tokens embedding
         """
-        return self.embedding(sentences, oov_way)
+        return self.embedding(sentences, oov_way, filter_spec_tokens)
 
-    def embedding(self, sentences, oov_way='avg'):
+    def embedding(self, sentences, oov_way='avg', filter_spec_tokens=True):
         """
         Get tokens, tokens embedding
 
@@ -137,13 +137,13 @@ class BertEmbedding(object):
             for token_id, sequence_output in zip(token_ids.asnumpy(),
                                                  sequence_outputs.asnumpy()):
                 batches.append((token_id, sequence_output))
-        return self.oov(batches, oov_way)
+        return self.oov(batches, oov_way, filter_spec_tokens)
 
     def data_loader(self, sentences, shuffle=False):
         dataset = BertEmbeddingDataset(sentences, self.transform)
         return DataLoader(dataset=dataset, batch_size=self.batch_size, shuffle=shuffle)
 
-    def oov(self, batches, oov_way='avg'):
+    def oov(self, batches, oov_way='avg', filter_spec_tokens=True):
         """
         How to handle oov. Also filter out [CLS], [SEP] tokens.
 
@@ -173,7 +173,7 @@ class BertEmbedding(object):
                 if token_id == 1:
                     # [PAD] token, sequence is finished.
                     break
-                if token_id in (2, 3):
+                if (token_id in (2, 3)) and filter_spec_tokens:
                     # [CLS], [SEP]
                     continue
                 token = self.vocab.idx_to_token[token_id]

@@ -101,6 +101,8 @@ class BertEmbedding(object):
         oov_way : str, default avg.
             use **avg**, **sum** or **last** to get token embedding for those out of
             vocabulary words
+        filter_spec_tokens : bool
+            filter [CLS], [SEP] tokens.
 
         Returns
         -------
@@ -120,6 +122,8 @@ class BertEmbedding(object):
         oov_way : str, default avg.
             use **avg**, **sum** or **last** to get token embedding for those out of
             vocabulary words
+        filter_spec_tokens : bool
+            filter [CLS], [SEP] tokens.
 
         Returns
         -------
@@ -158,6 +162,8 @@ class BertEmbedding(object):
         oov_way : str
             use **avg**, **sum** or **last** to get token embedding for those out of
             vocabulary words
+        filter_spec_tokens : bool
+            filter [CLS], [SEP] tokens.
 
         Returns
         -------

@@ -1,5 +1,7 @@
 # Bert Embeddings
 
+### [Deprecated] Thank you for checking this project. Unfortunately, I don't have time to maintain this project anymore. If you are interested in maintaing this project. Please create an issue and let me know. 
+
 [![Build Status](https://travis-ci.org/imgarylai/bert-embedding.svg?branch=master)](https://travis-ci.org/imgarylai/bert-embedding) [![codecov](https://codecov.io/gh/imgarylai/bert-embedding/branch/master/graph/badge.svg)](https://codecov.io/gh/imgarylai/bert-embedding) [![PyPI version](https://badge.fury.io/py/bert-embedding.svg)](https://pypi.org/project/bert-embedding/) [![Documentation Status](https://readthedocs.org/projects/bert-embedding/badge/?version=latest)](https://bert-embedding.readthedocs.io/en/latest/?badge=latest) 
 
 
